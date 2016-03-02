@@ -1,0 +1,90 @@
+body {
+  font: 10px sans-serif;
+  shape-rendering: crispEdges;
+  background-color: grey;
+}
+
+h1 {
+  color: white;
+  text-shadow: rgb(202, 202, 202) 0px 1px 0px, rgb(202, 202, 202) 0px 2px 0px, rgb(202, 202, 202) 0px 3px 0px, rgb(202, 202, 202) 0px 4px 0px, rgba(0, 0, 0, 0.2) 0px 5px 1px, rgba(0, 0, 0, 0.298039) 0px 0px 10px, rgba(0, 0, 0, 0.4) 0px 3px 5px, rgba(0, 0, 0, 0.498039) 0px 6px 5px, rgba(0, 0, 0, 0.6) 0px 10px 10px;
+  text-align: center;
+  font-size: 8.0em;
+  margin: 0em 0 .1em;
+  line-height: 1em;
+  text-transform: uppercase;
+  word-spacing: .05em;
+  font-weight: bold;
+}
+
+.header {
+  color: white;
+  text-align: center;
+  font-size: 3.0em;
+  margin: 0em 0 .1em;
+  line-height: 1em;
+  word-spacing: .05em;
+}
+
+header p:first-child:before, header p:first-child:after {
+    content: ' ';
+    width: 4.0em;
+    height: 3px;
+    display: inline-block;
+    border-bottom: 3px solid white;
+    position: relative;
+    top: -0.35em;
+    margin: 0 .5em;
+}
+
+main {
+  margin: auto;
+  width: 960px;
+}
+
+.btn-group-wrap {
+    text-align: center;
+}
+
+div.btn-group {
+    margin: 0 auto;
+    text-align: center;
+    width: inherit;
+    display: inline-block;
+}
+
+.day {
+  fill: #fff;
+  stroke: #ccc;
+}
+
+.month {
+  fill: none;
+  stroke: #000;
+  stroke-width: 2px;
+}
+
+text {
+  text-decoration-color: underline;
+}
+
+.RdYlGn .a0-10{fill:rgba(255, 255, 255, 1)}
+.RdYlGn .a1-10{fill:rgba(224, 238, 255, 1)}
+.RdYlGn .a2-10{fill:rgba(194, 220, 255, 1)}
+.RdYlGn .a3-10{fill:rgba(163, 203, 255, 1)}
+.RdYlGn .a4-10{fill:rgba(133, 186, 255, 1)}
+.RdYlGn .a5-10{fill:rgba(102, 168, 255, 1)}
+.RdYlGn .a6-10{fill:rgba(71, 151, 255, 1)}
+.RdYlGn .a7-10{fill:rgba(41, 134, 255, 1)}
+.RdYlGn .a8-10{fill:rgba(10, 116, 255, 1)}
+.RdYlGn .a9-10{fill:rgba(0, 102, 235, 1)}
+
+.RdYlGn .b0-10{fill:rgba(255, 255, 255, 1)}
+.RdYlGn .b1-10{fill:rgba(224, 238, 255, 1)}
+.RdYlGn .b2-10{fill:rgba(194, 220, 255, 1)}
+.RdYlGn .b3-10{fill:rgba(163, 203, 255, 1)}
+.RdYlGn .b4-10{fill:rgba(133, 186, 255, 1)}
+.RdYlGn .b5-10{fill:rgba(102, 168, 255, 1)}
+.RdYlGn .b6-10{fill:rgba(71, 151, 255, 1)}
+.RdYlGn .b7-10{fill:rgba(41, 134, 255, 1)}
+.RdYlGn .b8-10{fill:rgba(10, 116, 255, 1)}
+.RdYlGn .b9-10{fill:rgba(0, 102, 235, 1)}

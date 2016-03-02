@@ -1,0 +1,31 @@
+{
+  "name": "procalize",
+  "version": "0.0.0",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "bower": "^1.7.7",
+    "express": "^4.13.4",
+    "nodemon": "^1.8.1"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "bower install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://KTH GITHUB"
+  },
+  "keywords": [
+    "node.js",
+    "express",
+    "aik"
+  ],
+  "author": "Procalize Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://KTH GITHUB"
+  },
+  "homepage": "https://KTH GITHUB"
+}

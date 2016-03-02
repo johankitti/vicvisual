@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+<link rel="stylesheet" href="css/style.css">
+<script src="bower_components/d3/d3.min.js"></script>
+<body ng-app="proj3">
+  <div ng-controller="MainCtrl as mainCtrl">
+    <br><br>
+    <header>
+      <p class="header">The Fantastic</p>
+    </header>
+    <h1>Vic Studio</h1>
+    <header>
+      <p class="header">Visualization</p>
+    </header>
+    <br>
+    <div class="btn-group-wrap">
+      <div class="btn-group buttons" role="group">
+        <button type="button" ng-click="mainCtrl.page = 1;" class="btn btn-default">New Likes</button>
+        <button type="button" ng-click="mainCtrl.page = 2;" class="btn btn-default">Total Likes</button>
+        <button type="button" ng-click="mainCtrl.page = 3;" class="btn btn-default">Engaged Users</button>
+      </div>
+    </div>
+    <main>
+      <graph1 ng-show="mainCtrl.page == 1"></graph1>
+      <graph2 ng-show="mainCtrl.page == 2"></graph2>
+      <graph3 ng-show="mainCtrl.page == 3"></graph2>
+    </main>
+    <script>
+
+    var width = 960,
+        height = 136,
+        cellSize = 17; // cell size
+
+    var format = d3.time.format("%-m/%-d/%Y"); //    %Y-%m-%d");
+
+    var lowestDataPoint = 0;
+    var highestDataPoint = 20;
+
+    var lowestDataPoint2 = 0;
+    var highestDataPoint2 = 1100;
+
+    var lowestDataPoint3 = 0;
+    var highestDataPoint3 = 350;
+
+    var color = d3.scale.quantize()
+        .domain([lowestDataPoint, highestDataPoint])
+        .range(d3.range(10).map(function(d) { return "a" + d + "-10"; }));
+
+    var color2 = d3.scale.quantize()
+        .domain([lowestDataPoint2, highestDataPoint2])
+        .range(d3.range(10).map(function(d) { return "b" + d + "-10"; }));
+
+    var color3 = d3.scale.quantize()
+        .domain([lowestDataPoint3, highestDataPoint3])
+        .range(d3.range(10).map(function(d) { return "b" + d + "-10"; }));
+
+    var number = d3.format(".1");
+
+    var svg = d3.select("graph1").selectAll("svg")
+        .data(d3.range(2014, 2017))
+      .enter().append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("class", "RdYlGn")
+      .append("g")
+        .attr("transform", "translate(" + ((width - cellSize * 53) / 2) + "," + (height - cellSize * 7 - 1) + ")");
+
+    svg.append("text")
+        .attr("transform", "translate(-6," + cellSize * 3.5 + ")rotate(-90)")
+        .attr("y", -3)
+        .style("text-anchor", "middle")
+        .style("fill", "white")
+        .style("font-size", "2.5em")
+        .text(function(d) { return d; });
+
+    var rect = svg.selectAll(".day")
+        .data(function(d) { return d3.time.days(new Date(d, 0, 1), new Date(d + 1, 0, 1)); })
+        .enter().append("rect")
+        .attr("class", "day")
+        .attr("width", cellSize)
+        .attr("height", cellSize)
+        .attr("x", function(d) { return d3.time.weekOfYear(d) * cellSize; })
+        .attr("y", function(d) { return d.getDay() * cellSize; })
+        .datum(format);
+
+    rect.append("title")
+        .text(function(d) { return d; });
+
+    svg.selectAll(".month")
+        .data(function(d) { return d3.time.months(new Date(d, 0, 1), new Date(d + 1, 0, 1)); })
+        .enter().append("path")
+        .attr("class", "month")
+        .attr("d", monthPath);
+
+    var svg2 = d3.select("graph2").selectAll("svg")
+        .data(d3.range(2014, 2017))
+        .enter().append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("class", "RdYlGn")
+        .append("g")
+        .attr("transform", "translate(" + ((width - cellSize * 53) / 2) + "," + (height - cellSize * 7 - 1) + ")");
+
+    svg2.append("text")
+        .attr("transform", "translate(-6," + cellSize * 3.5 + ")rotate(-90)")
+        .attr("y", -3)
+        .style("text-anchor", "middle")
+        .style("fill", "white")
+        .style("font-size", "2.5em")
+        .text(function(d) { return d; });
+
+    var rect2 = svg2.selectAll(".day")
+        .data(function(d) { return d3.time.days(new Date(d, 0, 1), new Date(d + 1, 0, 1)); })
+        .enter().append("rect")
+        .attr("class", "day")
+        .attr("width", cellSize)
+        .attr("height", cellSize)
+        .attr("x", function(d) { return d3.time.weekOfYear(d) * cellSize; })
+        .attr("y", function(d) { return d.getDay() * cellSize; })
+        .datum(format);
+
+    rect2.append("title")
+        .text(function(d) { return d; });
+
+    svg2.selectAll(".month")
+        .data(function(d) { return d3.time.months(new Date(d, 0, 1), new Date(d + 1, 0, 1)); })
+      .enter().append("path")
+        .attr("class", "month")
+        .attr("d", monthPath);
+
+
+    var svg3 = d3.select("graph3").selectAll("svg")
+        .data(d3.range(2014, 2017))
+        .enter().append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("class", "RdYlGn")
+        .append("g")
+        .attr("transform", "translate(" + ((width - cellSize * 53) / 2) + "," + (height - cellSize * 7 - 1) + ")");
+
+    svg3.append("text")
+        .attr("transform", "translate(-6," + cellSize * 3.5 + ")rotate(-90)")
+        .attr("y", -3)
+        .style("text-anchor", "middle")
+        .style("fill", "white")
+        .style("font-size", "2.5em")
+        .text(function(d) { return d; });
+
+    var rect3 = svg3.selectAll(".day")
+        .data(function(d) { return d3.time.days(new Date(d, 0, 1), new Date(d + 1, 0, 1)); })
+        .enter().append("rect")
+        .attr("class", "day")
+        .attr("width", cellSize)
+        .attr("height", cellSize)
+        .attr("x", function(d) { return d3.time.weekOfYear(d) * cellSize; })
+        .attr("y", function(d) { return d.getDay() * cellSize; })
+        .datum(format);
+
+    rect3.append("title")
+        .text(function(d) { return d; });
+
+    svg3.selectAll(".month")
+        .data(function(d) { return d3.time.months(new Date(d, 0, 1), new Date(d + 1, 0, 1)); })
+      .enter().append("path")
+        .attr("class", "month")
+        .attr("d", monthPath);
+
+    d3.csv("data/data.csv", function(error, csv) {
+      if (error) throw error;
+
+      var data = d3.nest()
+        .key(function(d) { return d.Date; })
+        .rollup(function(d) { return (d[0].Likes); })
+        .map(csv);
+
+      var data2 = d3.nest()
+        .key(function(d) { return d.Date; })
+        .rollup(function(d) { return (d[0].Total); })
+        .map(csv);
+
+      var data3 = d3.nest()
+        .key(function(d) { return d.Date; })
+        .rollup(function(d) { return (d[0].Dailyengagedusers); })
+        .map(csv);
+
+      rect.filter(function(d) { return d in data; })
+          .attr("class", function(d) { return "day " + color(data[d]); })
+        .select("title")
+          .text(function(d) { return d + "- New Likes: " + number(data[d]); });
+
+      rect2.filter(function(d) { return d in data; })
+          .attr("class", function(d) { return "day " + color2(data2[d]); })
+        .select("title")
+          .text(function(d) { return d + "- Total Likes: " + number(data2[d]); });
+
+      rect3.filter(function(d) { return d in data; })
+          .attr("class", function(d) { return "day " + color3(data3[d]); })
+        .select("title")
+          .text(function(d) { return d + "- Daily Engaged Users: " + number(data3[d]); });
+    });
+
+    function monthPath(t0) {
+      var t1 = new Date(t0.getFullYear(), t0.getMonth() + 1, 0),
+          d0 = t0.getDay(), w0 = d3.time.weekOfYear(t0),
+          d1 = t1.getDay(), w1 = d3.time.weekOfYear(t1);
+      return "M" + (w0 + 1) * cellSize + "," + d0 * cellSize
+          + "H" + w0 * cellSize + "V" + 7 * cellSize
+          + "H" + w1 * cellSize + "V" + (d1 + 1) * cellSize
+          + "H" + (w1 + 1) * cellSize + "V" + 0
+          + "H" + (w0 + 1) * cellSize + "Z";
+    }
+    </script>
+  </div>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+
+  <script src="js/app.js"></script>
+  <script src="js/controllers/MainCtrl.js"></script>
+  <br><br><br>
+</body>
+</html>
